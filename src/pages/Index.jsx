@@ -7,6 +7,7 @@ import SearchBar from '../components/SearchBar';
 import CarCategoriesSection from '../components/CarCategoriesSection';
 import FeaturedCarsSection from '../components/FeaturedCarsSection';
 import WhyChooseUsSection from '../components/WhyChooseUsSection';
+import AboutUsSection from '../components/AboutUsSection';
 
 const Index = () => {
   const handleSearch = (query) => {
@@ -30,6 +31,7 @@ const Index = () => {
         
         <CarCategoriesSection />
         <FeaturedCarsSection />
+        <AboutUsSection />
         <WhyChooseUsSection />
       </main>
       <Footer />
