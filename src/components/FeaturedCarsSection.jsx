@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import CarListItem from './CarListItem';
 import { Button } from './ui/button';
 
-// Placeholder data for featured cars with prices in rupees
+// Placeholder data for featured cars with prices
 const featuredCars = [
   {
     id: 1,
@@ -13,7 +13,6 @@ const featuredCars = [
     price: 2500,
     year: 2022,
     seats: 5,
-    image: 'https://images.unsplash.com/photo-1550355291-bbee04a92027?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3'
   },
   {
     id: 2,
@@ -22,7 +21,6 @@ const featuredCars = [
     price: 3500,
     year: 2023,
     seats: 7,
-    image: 'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3'
   },
   {
     id: 3,
@@ -31,7 +29,6 @@ const featuredCars = [
     price: 5000,
     year: 2023,
     seats: 5,
-    image: 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3'
   }
 ];
 

@@ -6,17 +6,15 @@ import { Card, CardContent, CardFooter, CardHeader } from './ui/card';
 import { Button } from './ui/button';
 
 const CarCard = ({ car }) => {
-  const { id, name, type, price, year, seats, image } = car;
+  const { id, name, type, price, year, seats } = car;
 
   return (
     <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg">
-      <div className="aspect-[16/9] relative overflow-hidden">
-        <img 
-          src={image} 
-          alt={name}
-          className="object-cover w-full h-full transition-transform duration-500 hover:scale-105"
-        />
-        <div className="absolute top-2 right-2 bg-white/90 text-sm font-bold py-1 px-2 rounded">
+      <div className="aspect-[16/9] relative overflow-hidden bg-muted">
+        <div className="w-full h-full flex items-center justify-center text-muted-foreground">
+          <p className="text-sm">{name} Image Placeholder</p>
+        </div>
+        <div className="absolute top-2 right-2 bg-white/90 dark:bg-background/90 text-sm font-bold py-1 px-2 rounded">
           {type}
         </div>
       </div>
@@ -30,7 +28,7 @@ const CarCard = ({ car }) => {
         </div>
       </CardHeader>
       <CardContent className="pb-4">
-        <div className="flex justify-between text-sm text-gray-600">
+        <div className="flex justify-between text-sm text-muted-foreground">
           <div className="flex items-center">
             <Calendar className="mr-1 h-4 w-4" />
             <span>{year}</span>

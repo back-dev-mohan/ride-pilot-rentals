@@ -8,9 +8,9 @@ const HeroSection = () => {
   return (
     <div className="relative bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
       {/* Hero content */}
-      <div className="container mx-auto px-4 py-12 md:py-20 flex items-center justify-between">
-        <div className="max-w-2xl">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+      <div className="container mx-auto px-4 py-16 md:py-24 flex flex-col md:flex-row items-center justify-between">
+        <div className="max-w-2xl mb-10 md:mb-0">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
             Drive Your Dream Car Without Buying It
           </h1>
           <p className="text-lg md:text-xl mb-8 text-blue-100">
@@ -32,14 +32,9 @@ const HeroSection = () => {
         </div>
         
         <div className="hidden lg:block relative w-1/3 h-[400px]">
-          <img 
-            src="https://images.unsplash.com/photo-1556189250-72ba954cfc2b?w=600&auto=format&fit=crop" 
-            alt="Luxury car" 
-            className="absolute top-0 right-0 rounded-lg shadow-xl object-cover w-full h-full"
-            width={600}
-            height={400}
-            loading="eager"
-          />
+          <div className="absolute top-0 right-0 rounded-lg shadow-xl bg-white/10 w-full h-full flex items-center justify-center text-white/70 text-sm border border-white/20 backdrop-blur-sm">
+            <p className="text-center px-4">Car Image Placeholder<br />(Admin will add image)</p>
+          </div>
         </div>
       </div>
 

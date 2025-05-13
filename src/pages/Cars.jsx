@@ -19,7 +19,7 @@ const Cars = () => {
   const [categoryFilter, setCategoryFilter] = useState(initialCategoryFilter);
   const [showFilters, setShowFilters] = useState(false);
   
-  // Sample cars data with price in lakhs (₹)
+  // Sample cars data
   const allCars = [
     {
       id: 1,
@@ -28,7 +28,6 @@ const Cars = () => {
       price: 2500,
       year: 2022,
       seats: 5,
-      image: 'https://images.unsplash.com/photo-1550355291-bbee04a92027?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3'
     },
     {
       id: 2,
@@ -37,7 +36,6 @@ const Cars = () => {
       price: 3500,
       year: 2023,
       seats: 7,
-      image: 'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3'
     },
     {
       id: 3,
@@ -46,7 +44,6 @@ const Cars = () => {
       price: 5000,
       year: 2023,
       seats: 5,
-      image: 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3'
     },
     {
       id: 4,
@@ -55,7 +52,6 @@ const Cars = () => {
       price: 2000,
       year: 2022,
       seats: 5,
-      image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3'
     },
     {
       id: 5,
@@ -64,7 +60,6 @@ const Cars = () => {
       price: 8000,
       year: 2023,
       seats: 5,
-      image: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3'
     },
     {
       id: 6,
@@ -73,7 +68,6 @@ const Cars = () => {
       price: 4500,
       year: 2022,
       seats: 5,
-      image: 'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3'
     },
   ];
 

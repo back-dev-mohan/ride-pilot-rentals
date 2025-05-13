@@ -6,18 +6,16 @@ import { Button } from './ui/button';
 import { AspectRatio } from './ui/aspect-ratio';
 
 const CarListItem = ({ car }) => {
-  const { id, name, type, price, year, seats, image } = car;
+  const { id, name, type, price, year, seats } = car;
 
   return (
     <div className="group border border-border rounded-lg overflow-hidden transition-all duration-300 hover:shadow-md dark:hover:shadow-primary/10 bg-background">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="md:col-span-1 relative">
           <AspectRatio ratio={4/3}>
-            <img 
-              src={image} 
-              alt={name}
-              className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
-            />
+            <div className="w-full h-full bg-muted flex items-center justify-center text-muted-foreground">
+              <p className="text-sm text-center px-4">{name} Image Placeholder</p>
+            </div>
           </AspectRatio>
           <div className="absolute top-2 right-2 bg-background/90 dark:bg-background/80 text-sm font-bold py-1 px-2 rounded border border-border">
             {type}
