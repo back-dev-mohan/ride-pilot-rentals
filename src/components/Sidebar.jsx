@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ChevronDown, Car, CarFront } from "lucide-react";
+import { ChevronDown, ChevronUp, Car, CarFront } from "lucide-react";
 import {
   Sidebar as SidebarComponent,
   SidebarContent,
@@ -12,7 +12,6 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarProvider,
-  SidebarTrigger,
 } from "./ui/sidebar";
 
 // Sample car categories
@@ -27,6 +26,10 @@ const carCategories = [
 const Sidebar = ({ children }) => {
   const [categoryExpanded, setCategoryExpanded] = useState(true);
 
+  const toggleCategory = () => {
+    setCategoryExpanded(!categoryExpanded);
+  };
+
   return (
     <SidebarProvider>
       <div className="flex min-h-screen w-full">
@@ -36,9 +39,16 @@ const Sidebar = ({ children }) => {
               open={categoryExpanded} 
               onOpenChange={setCategoryExpanded}
             >
-              <SidebarGroupLabel className="flex items-center gap-2">
-                <CarFront className="h-4 w-4" />
-                Categories
+              <SidebarGroupLabel className="flex items-center justify-between cursor-pointer" onClick={toggleCategory}>
+                <div className="flex items-center gap-2">
+                  <CarFront className="h-4 w-4" />
+                  <span>Categories</span>
+                </div>
+                {categoryExpanded ? (
+                  <ChevronUp className="h-4 w-4" />
+                ) : (
+                  <ChevronDown className="h-4 w-4" />
+                )}
               </SidebarGroupLabel>
               <SidebarGroupContent>
                 <SidebarMenu>
@@ -47,7 +57,7 @@ const Sidebar = ({ children }) => {
                       <SidebarMenuButton asChild>
                         <Link
                           to={`/cars?category=${category.id}`}
-                          className="flex items-center gap-2"
+                          className="flex items-center gap-2 py-2 px-3 rounded-md hover:bg-accent transition-colors"
                         >
                           <category.icon className="h-4 w-4" />
                           <span>{category.name}</span>

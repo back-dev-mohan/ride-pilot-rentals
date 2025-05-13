@@ -15,8 +15,8 @@ const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-background border-b border-border">
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+    <header className="sticky top-0 z-50 bg-background border-b border-border shadow-sm">
+      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         <Link to="/" className="text-2xl font-bold text-primary">RidePilot</Link>
         
         {/* Desktop Navigation */}
@@ -43,23 +43,23 @@ const Header = () => {
               </Link>
             </div>
           ) : (
-            <>
+            <div className="flex items-center space-x-2">
               <Link to="/login">
                 <Button variant="outline" size="sm">Login</Button>
               </Link>
               <Link to="/signup">
                 <Button size="sm">Sign Up</Button>
               </Link>
-            </>
+            </div>
           )}
         </div>
         
         {/* Mobile menu button */}
         <div className="md:hidden flex items-center gap-2">
           <ThemeToggle />
-          <button className="text-foreground" onClick={toggleMenu}>
+          <Button variant="ghost" size="icon" onClick={toggleMenu} className="text-foreground">
             {isMenuOpen ? <X /> : <Menu />}
-          </button>
+          </Button>
         </div>
       </div>
       
