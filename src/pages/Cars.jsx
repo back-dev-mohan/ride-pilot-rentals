@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SearchBar from '../components/SearchBar';
-import CarCard from '../components/CarCard';
+import CarListItem from '../components/CarListItem';
 import NotFoundCar from '../components/NotFoundCar';
 import { Button } from '../components/ui/button';
 import { Filter, SlidersHorizontal } from 'lucide-react';
@@ -19,13 +19,13 @@ const Cars = () => {
   const [categoryFilter, setCategoryFilter] = useState(initialCategoryFilter);
   const [showFilters, setShowFilters] = useState(false);
   
-  // Sample cars data - would come from API in production
+  // Sample cars data with price in lakhs (₹)
   const allCars = [
     {
       id: 1,
       name: 'Toyota Camry',
       type: 'Sedan',
-      price: 45,
+      price: 2500,
       year: 2022,
       seats: 5,
       image: 'https://images.unsplash.com/photo-1550355291-bbee04a92027?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3'
@@ -34,7 +34,7 @@ const Cars = () => {
       id: 2,
       name: 'Honda CR-V',
       type: 'SUV',
-      price: 65,
+      price: 3500,
       year: 2023,
       seats: 7,
       image: 'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3'
@@ -43,7 +43,7 @@ const Cars = () => {
       id: 3,
       name: 'BMW 3 Series',
       type: 'Luxury',
-      price: 95,
+      price: 5000,
       year: 2023,
       seats: 5,
       image: 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3'
@@ -52,7 +52,7 @@ const Cars = () => {
       id: 4,
       name: 'Volkswagen Golf',
       type: 'Hatchback',
-      price: 40,
+      price: 2000,
       year: 2022,
       seats: 5,
       image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3'
@@ -61,7 +61,7 @@ const Cars = () => {
       id: 5,
       name: 'Mercedes-Benz S-Class',
       type: 'Luxury',
-      price: 120,
+      price: 8000,
       year: 2023,
       seats: 5,
       image: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3'
@@ -70,7 +70,7 @@ const Cars = () => {
       id: 6,
       name: 'Ford F-150',
       type: 'Truck',
-      price: 75,
+      price: 4500,
       year: 2022,
       seats: 5,
       image: 'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3'
@@ -102,12 +102,12 @@ const Cars = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex-1 bg-gray-50">
+      <main className="flex-1 bg-background">
         {/* Search and Filter Bar */}
-        <div className="bg-white py-6 shadow-sm">
-          <div className="container mx-auto px-4">
+        <div className="bg-card shadow-sm border-b">
+          <div className="container mx-auto px-4 py-6">
             <div className="flex items-center justify-between mb-4">
-              <h1 className="text-2xl font-bold">Available Cars</h1>
+              <h1 className="text-2xl font-bold text-foreground">Available Cars</h1>
               <Button 
                 variant="outline" 
                 onClick={() => setShowFilters(!showFilters)}
@@ -121,7 +121,7 @@ const Cars = () => {
             <SearchBar onSearch={handleSearch} />
             
             {showFilters && (
-              <div className="mt-4 p-4 bg-gray-50 rounded-lg">
+              <div className="mt-4 p-4 bg-muted rounded-lg">
                 <div className="flex items-center mb-2">
                   <SlidersHorizontal className="h-4 w-4 mr-2" />
                   <h3 className="font-medium">Filter by category</h3>
@@ -147,9 +147,9 @@ const Cars = () => {
         {/* Cars Listing */}
         <div className="container mx-auto px-4 py-8">
           {filteredCars.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="flex flex-col space-y-6">
               {filteredCars.map((car) => (
-                <CarCard key={car.id} car={car} />
+                <CarListItem key={car.id} car={car} />
               ))}
             </div>
           ) : (

@@ -4,6 +4,7 @@ import { Menu, X, User } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from './ui/button';
 import { useAuth } from '../context/AuthContext';
+import ThemeToggle from './ThemeToggle';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,22 +15,24 @@ const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-sm">
+    <header className="sticky top-0 z-50 bg-background border-b border-border">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Link to="/" className="text-2xl font-bold text-primary">RidePilot</Link>
         
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6">
-          <Link to="/" className="text-gray-800 hover:text-primary transition-colors">Home</Link>
-          <Link to="/cars" className="text-gray-800 hover:text-primary transition-colors">Cars</Link>
-          <Link to="/how-it-works" className="text-gray-800 hover:text-primary transition-colors">How It Works</Link>
-          <Link to="/contact" className="text-gray-800 hover:text-primary transition-colors">Contact</Link>
+          <Link to="/" className="text-foreground hover:text-primary transition-colors">Home</Link>
+          <Link to="/cars" className="text-foreground hover:text-primary transition-colors">Cars</Link>
+          <Link to="/how-it-works" className="text-foreground hover:text-primary transition-colors">How It Works</Link>
+          <Link to="/contact" className="text-foreground hover:text-primary transition-colors">Contact</Link>
         </nav>
         
         <div className="hidden md:flex items-center space-x-4">
+          <ThemeToggle />
+          
           {isAuthenticated ? (
             <div className="flex items-center space-x-4">
-              <span className="text-sm text-gray-600">
+              <span className="text-sm text-muted-foreground">
                 Hi, {user?.name?.split(' ')[0]}
               </span>
               <Link to="/profile">
@@ -52,19 +55,22 @@ const Header = () => {
         </div>
         
         {/* Mobile menu button */}
-        <button className="md:hidden" onClick={toggleMenu}>
-          {isMenuOpen ? <X /> : <Menu />}
-        </button>
+        <div className="md:hidden flex items-center gap-2">
+          <ThemeToggle />
+          <button className="text-foreground" onClick={toggleMenu}>
+            {isMenuOpen ? <X /> : <Menu />}
+          </button>
+        </div>
       </div>
       
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white py-4 px-4 shadow-md">
+        <div className="md:hidden bg-background py-4 px-4 shadow-md">
           <nav className="flex flex-col space-y-4">
-            <Link to="/" className="text-gray-800 hover:text-primary transition-colors" onClick={toggleMenu}>Home</Link>
-            <Link to="/cars" className="text-gray-800 hover:text-primary transition-colors" onClick={toggleMenu}>Cars</Link>
-            <Link to="/how-it-works" className="text-gray-800 hover:text-primary transition-colors" onClick={toggleMenu}>How It Works</Link>
-            <Link to="/contact" className="text-gray-800 hover:text-primary transition-colors" onClick={toggleMenu}>Contact</Link>
+            <Link to="/" className="text-foreground hover:text-primary transition-colors" onClick={toggleMenu}>Home</Link>
+            <Link to="/cars" className="text-foreground hover:text-primary transition-colors" onClick={toggleMenu}>Cars</Link>
+            <Link to="/how-it-works" className="text-foreground hover:text-primary transition-colors" onClick={toggleMenu}>How It Works</Link>
+            <Link to="/contact" className="text-foreground hover:text-primary transition-colors" onClick={toggleMenu}>Contact</Link>
             <div className="flex flex-col space-y-2 pt-2">
               {isAuthenticated ? (
                 <>
