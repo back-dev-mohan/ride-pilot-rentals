@@ -1,17 +1,24 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 
-const ThemeContext = createContext({
-  theme: "light",
+type Theme = 'light' | 'dark';
+
+type ThemeContextType = {
+  theme: Theme;
+  setTheme: (theme: Theme) => void;
+};
+
+const ThemeContext = createContext<ThemeContextType>({
+  theme: 'light',
   setTheme: () => null,
 });
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState(() => {
+  const [theme, setTheme] = useState<Theme>(() => {
     // Check if theme exists in localStorage or use system preference
     if (typeof window !== "undefined") {
       const storedTheme = window.localStorage.getItem("theme");
-      if (storedTheme) {
+      if (storedTheme && (storedTheme === 'light' || storedTheme === 'dark')) {
         return storedTheme;
       }
       

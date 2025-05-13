@@ -1,10 +1,27 @@
 
 import React, { useState } from 'react';
-import { Menu, X, User } from 'lucide-react';
+import { Menu, X, User, ChevronDown, ChevronUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from './ui/button';
 import { useAuth } from '../context/AuthContext';
 import ThemeToggle from './ThemeToggle';
+import { 
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger
+} from "./ui/navigation-menu";
+
+// Car categories data
+const carCategories = [
+  { name: "Sedan", id: "sedan" },
+  { name: "SUV", id: "suv" },
+  { name: "Luxury", id: "luxury" },
+  { name: "Hatchback", id: "hatchback" },
+  { name: "Truck", id: "truck" },
+];
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,7 +39,32 @@ const Header = () => {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6">
           <Link to="/" className="text-foreground hover:text-primary transition-colors">Home</Link>
-          <Link to="/cars" className="text-foreground hover:text-primary transition-colors">Cars</Link>
+          
+          {/* Categories Dropdown */}
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>Categories</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid w-[200px] gap-2 p-4">
+                    {carCategories.map((category) => (
+                      <li key={category.id}>
+                        <NavigationMenuLink asChild>
+                          <Link
+                            to={`/cars?category=${category.id}`}
+                            className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                          >
+                            {category.name}
+                          </Link>
+                        </NavigationMenuLink>
+                      </li>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
+          
           <Link to="/how-it-works" className="text-foreground hover:text-primary transition-colors">How It Works</Link>
           <Link to="/contact" className="text-foreground hover:text-primary transition-colors">Contact</Link>
         </nav>
@@ -68,7 +110,26 @@ const Header = () => {
         <div className="md:hidden bg-background py-4 px-4 shadow-md">
           <nav className="flex flex-col space-y-4">
             <Link to="/" className="text-foreground hover:text-primary transition-colors" onClick={toggleMenu}>Home</Link>
-            <Link to="/cars" className="text-foreground hover:text-primary transition-colors" onClick={toggleMenu}>Cars</Link>
+            
+            {/* Mobile Categories Dropdown */}
+            <div className="relative">
+              <div className="flex items-center justify-between cursor-pointer py-2 text-foreground hover:text-primary transition-colors">
+                <span>Categories</span>
+              </div>
+              <div className="pl-4 mt-2 space-y-2">
+                {carCategories.map((category) => (
+                  <Link 
+                    key={category.id}
+                    to={`/cars?category=${category.id}`}
+                    className="block py-1 text-foreground hover:text-primary transition-colors"
+                    onClick={toggleMenu}
+                  >
+                    {category.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+            
             <Link to="/how-it-works" className="text-foreground hover:text-primary transition-colors" onClick={toggleMenu}>How It Works</Link>
             <Link to="/contact" className="text-foreground hover:text-primary transition-colors" onClick={toggleMenu}>Contact</Link>
             <div className="flex flex-col space-y-2 pt-2">

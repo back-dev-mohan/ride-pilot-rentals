@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { AspectRatio } from './ui/aspect-ratio';
 
 const categories = [
   {
@@ -42,19 +43,19 @@ const CarCategoriesSection = () => {
               className="group"
             >
               <div className="rounded-lg overflow-hidden bg-white dark:bg-gray-800 shadow-md transition-all duration-300 group-hover:shadow-xl">
-                <div className="aspect-[4/3] relative overflow-hidden h-[200px]">
+                <AspectRatio ratio={4/3} className="w-full max-w-[600px] mx-auto">
                   <img 
-                    src={category.image} 
+                    src={category.image.replace('w=800', 'w=600')} 
                     alt={category.name} 
                     className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
-                    width="800"
-                    height="600"
+                    width={600}
+                    height={450}
+                    loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                  <div className="absolute bottom-0 left-0 p-4 text-white">
-                    <h3 className="font-bold text-xl mb-1">{category.name}</h3>
-                    <p className="text-sm opacity-90">{category.description}</p>
-                  </div>
+                </AspectRatio>
+                <div className="p-4">
+                  <h3 className="font-bold text-xl mb-1">{category.name}</h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">{category.description}</p>
                 </div>
               </div>
             </Link>
