@@ -8,6 +8,7 @@ import CarCategoriesSection from '../components/CarCategoriesSection';
 import FeaturedCarsSection from '../components/FeaturedCarsSection';
 import WhyChooseUsSection from '../components/WhyChooseUsSection';
 import AboutUsSection from '../components/AboutUsSection';
+import Sidebar from '../components/Sidebar';
 
 const Index = () => {
   const handleSearch = (query) => {
@@ -19,24 +20,32 @@ const Index = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex-1">
-        <HeroSection />
+      <div className="flex flex-1">
+        {/* Sidebar on the left */}
+        <div className="hidden md:block">
+          <Sidebar />
+        </div>
         
-        {/* Search Section with improved styling */}
-        <div className="py-6 bg-background border-b border-border shadow-sm">
-          <div className="container mx-auto px-4">
-            <SearchBar onSearch={handleSearch} />
+        <main className="w-full">
+          <HeroSection />
+          
+          {/* Improved search section with better responsive layout */}
+          <div className="py-8 bg-background border-b border-border shadow-sm">
+            <div className="container mx-auto px-4 max-w-4xl">
+              <h2 className="text-2xl font-bold text-center mb-4">Find Your Perfect Rental</h2>
+              <SearchBar onSearch={handleSearch} />
+            </div>
           </div>
-        </div>
-        
-        {/* Main content sections with consistent spacing */}
-        <div className="container mx-auto px-4">
-          <CarCategoriesSection />
-          <FeaturedCarsSection />
-          <AboutUsSection />
-          <WhyChooseUsSection />
-        </div>
-      </main>
+          
+          {/* Main content sections with consistent spacing */}
+          <div className="container mx-auto px-4 py-8">
+            <CarCategoriesSection />
+            <FeaturedCarsSection />
+            <AboutUsSection />
+            <WhyChooseUsSection />
+          </div>
+        </main>
+      </div>
       <Footer />
     </div>
   );
