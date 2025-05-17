@@ -1,0 +1,18 @@
+{{- if .Values.serviceAccount.create -}}
+apiVersion: v1
+kind: RoleBinding
+metadata:
+  name: {{ .values.roleBinding.name }}
+  labels:
+    {{- include "rental-service-config.labels" . | nindent 4 }}
+  namespace:
+    {{ .values.namespace}}
+subjects:
+  - kind: ServiceAccount
+    name: {{.values.serviceaccount }}
+    namespace: {{.values.namespace}}
+roleRef:
+  kind: role
+  role: {{.values.role.name }}
+  version: rbac.authorization.k8s.io/v1
+
