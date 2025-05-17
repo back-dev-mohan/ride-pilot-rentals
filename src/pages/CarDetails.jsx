@@ -21,7 +21,6 @@ const CarDetails = () => {
     price: 45,
     year: 2022,
     seats: 5,
-    image: 'https://images.unsplash.com/photo-1550355291-bbee04a92027?w=1200&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
     description: 'The Toyota Camry is a stylish and reliable sedan with excellent fuel economy, making it perfect for city driving or long road trips. This model comes with advanced safety features and modern amenities for a comfortable ride.',
     features: [
       'Bluetooth Connectivity',
@@ -89,15 +88,6 @@ const CarDetails = () => {
           </div>
           
           <div className="bg-white rounded-lg shadow-md overflow-hidden">
-            {/* Car Images */}
-            <div className="aspect-[16/9] overflow-hidden bg-gray-100">
-              <img 
-                src={car.image} 
-                alt={car.name} 
-                className="w-full h-full object-cover"
-              />
-            </div>
-            
             <div className="p-6">
               {/* Car Header */}
               <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-6">

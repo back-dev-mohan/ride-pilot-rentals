@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SearchBar from '../components/SearchBar';
-import CarListItem from '../components/CarListItem';
+import CarCard from '../components/CarCard';
 import NotFoundCar from '../components/NotFoundCar';
 import { Button } from '../components/ui/button';
 import { Filter, SlidersHorizontal } from 'lucide-react';
@@ -99,13 +99,14 @@ const Cars = () => {
       <main className="flex-1 bg-background">
         {/* Search and Filter Bar */}
         <div className="bg-card shadow-sm border-b">
-          <div className="container mx-auto px-4 py-6">
+          <div className="container mx-auto px-4 py-4">
             <div className="flex items-center justify-between mb-4">
               <h1 className="text-2xl font-bold text-foreground">Available Cars</h1>
               <Button 
                 variant="outline" 
                 onClick={() => setShowFilters(!showFilters)}
                 className="flex gap-2 items-center"
+                size="sm"
               >
                 <Filter className="h-4 w-4" />
                 <span className="hidden md:inline">Filters</span>
@@ -139,11 +140,11 @@ const Cars = () => {
         </div>
 
         {/* Cars Listing */}
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-4 py-6">
           {filteredCars.length > 0 ? (
-            <div className="flex flex-col space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {filteredCars.map((car) => (
-                <CarListItem key={car.id} car={car} />
+                <CarCard key={car.id} car={car} />
               ))}
             </div>
           ) : (
