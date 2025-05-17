@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Menu, X, User, Home, Car, CarFront, Info } from 'lucide-react';
+import { Menu, X, User, Home, Car, Info } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from './ui/button';
 import { useAuth } from '../context/AuthContext';
@@ -39,72 +39,71 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50 bg-background border-b border-border shadow-sm">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-6">
           <Link to="/" className="text-2xl font-bold text-primary">RidePilot</Link>
           
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-2">
+          {/* Desktop Navigation - Simplified with single dropdown */}
+          <nav className="hidden md:flex items-center space-x-6">
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="px-3 py-2">
-                    <Home className="w-4 h-4 mr-2" />
-                    Explore
+                  <Link to="/cars" className="flex items-center px-4 py-2 text-foreground hover:text-primary hover-transition">
+                    <Car className="w-4 h-4 mr-2" />
+                    Browse Cars
+                  </Link>
+                </NavigationMenuItem>
+
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="px-4 py-2">
+                    <Car className="w-4 h-4 mr-2" />
+                    Categories
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <ul className="grid w-[180px] gap-1 p-2">
+                    <div className="grid w-[400px] gap-3 p-4 grid-cols-2">
+                      {carCategories.map((category) => (
+                        <Link
+                          key={category.id}
+                          to={`/cars?category=${category.id}`}
+                          className="flex items-center p-3 rounded-lg hover:bg-accent transition-colors"
+                        >
+                          <div>
+                            <div className="font-medium">{category.name}</div>
+                            <div className="text-sm text-muted-foreground">
+                              Browse {category.name.toLowerCase()} models
+                            </div>
+                          </div>
+                        </Link>
+                      ))}
+                      <Link 
+                        to="/cars"
+                        className="col-span-2 flex justify-center mt-2 pt-2 border-t border-border text-primary hover:underline"
+                      >
+                        View All Cars
+                      </Link>
+                    </div>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+                
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="px-4 py-2">
+                    <Info className="w-4 h-4 mr-2" />
+                    About
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="grid w-[220px] gap-1 p-4">
                       <li>
-                        <Link to="/" className="block select-none rounded-md p-2 text-sm leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          Home
+                        <Link to="/about" className="block select-none rounded-md p-2 text-sm leading-none no-underline outline-none transition-colors hover:bg-accent">
+                          About Us
                         </Link>
                       </li>
                       <li>
-                        <Link to="/how-it-works" className="block select-none rounded-md p-2 text-sm leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                        <Link to="/how-it-works" className="block select-none rounded-md p-2 text-sm leading-none no-underline outline-none transition-colors hover:bg-accent">
                           How It Works
                         </Link>
                       </li>
                       <li>
-                        <Link to="/contact" className="block select-none rounded-md p-2 text-sm leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                        <Link to="/contact" className="block select-none rounded-md p-2 text-sm leading-none no-underline outline-none transition-colors hover:bg-accent">
                           Contact
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/about" className="block select-none rounded-md p-2 text-sm leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          About Us
-                        </Link>
-                      </li>
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-            </NavigationMenu>
-            
-            {/* Categories Dropdown */}
-            <NavigationMenu>
-              <NavigationMenuList>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className="px-3 py-2">
-                    <CarFront className="w-4 h-4 mr-2" />
-                    Categories
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="grid w-[200px] gap-1 p-2">
-                      {carCategories.map((category) => (
-                        <li key={category.id}>
-                          <Link
-                            to={`/cars?category=${category.id}`}
-                            className="block select-none rounded-md p-2 text-sm leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                          >
-                            {category.name}
-                          </Link>
-                        </li>
-                      ))}
-                      <li className="mt-1 pt-1 border-t border-border">
-                        <Link 
-                          to="/cars"
-                          className="block select-none rounded-md p-2 text-sm font-medium leading-none no-underline outline-none transition-colors text-primary hover:bg-accent"
-                        >
-                          View All Cars
                         </Link>
                       </li>
                     </ul>
@@ -115,7 +114,7 @@ const Header = () => {
           </nav>
         </div>
         
-        <div className="hidden md:flex items-center space-x-4">
+        <div className="flex items-center space-x-4">
           {/* Single theme toggle */}
           <ThemeToggle />
           
@@ -149,8 +148,7 @@ const Header = () => {
         </div>
         
         {/* Mobile menu button */}
-        <div className="md:hidden flex items-center gap-2">
-          <ThemeToggle />
+        <div className="md:hidden flex items-center">
           <Button variant="ghost" size="icon" onClick={toggleMenu} className="text-foreground">
             {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>
@@ -159,17 +157,22 @@ const Header = () => {
       
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="md:hidden bg-background py-4 px-4 shadow-md">
+        <div className="md:hidden bg-background py-4 px-4 shadow-md animate-fade-in">
           <nav className="flex flex-col space-y-3">
             <Link to="/" className="flex items-center gap-2 px-3 py-2 hover:bg-accent rounded-md transition-colors" onClick={toggleMenu}>
               <Home className="h-4 w-4" />
               Home
             </Link>
             
+            <Link to="/cars" className="flex items-center gap-2 px-3 py-2 hover:bg-accent rounded-md transition-colors" onClick={toggleMenu}>
+              <Car className="h-4 w-4" />
+              Browse Cars
+            </Link>
+            
             {/* Mobile Categories Dropdown */}
             <div className="space-y-1">
               <div className="flex items-center gap-2 px-3 py-2 font-medium">
-                <CarFront className="h-4 w-4" />
+                <Car className="h-4 w-4" />
                 Categories
               </div>
               <div className="pl-9 space-y-1">
@@ -177,19 +180,12 @@ const Header = () => {
                   <Link 
                     key={category.id}
                     to={`/cars?category=${category.id}`}
-                    className="block py-1.5 px-2 text-foreground hover:bg-accent hover:text-primary rounded-md transition-colors"
+                    className="block py-2 px-2 text-foreground hover:bg-accent hover:text-primary rounded-md transition-colors"
                     onClick={toggleMenu}
                   >
                     {category.name}
                   </Link>
                 ))}
-                <Link 
-                  to="/cars"
-                  className="block py-1.5 px-2 font-medium text-primary hover:bg-accent rounded-md transition-colors"
-                  onClick={toggleMenu}
-                >
-                  View All Cars
-                </Link>
               </div>
             </div>
             

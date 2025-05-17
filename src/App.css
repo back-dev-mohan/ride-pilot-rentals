@@ -1,37 +1,43 @@
 
-/* Keep only what's necessary */
+/* Clean simplified styles */
 #root {
   width: 100%;
   margin: 0 auto;
   text-align: center;
 }
 
-.logo {
-  height: 3em;
-  padding: 0.5em;
-  will-change: filter;
-  transition: filter 300ms;
+/* Utility classes for consistent spacing */
+.section-padding {
+  padding: 4rem 1rem;
 }
 
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+@media (min-width: 768px) {
+  .section-padding {
+    padding: 5rem 2rem;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@media (min-width: 1024px) {
+  .section-padding {
+    padding: 6rem 3rem;
   }
+}
+
+/* Animation effects */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.slide-up {
+  animation: slideUp 0.5s ease forwards;
 }

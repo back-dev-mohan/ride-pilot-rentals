@@ -9,14 +9,18 @@ const CarListItem = ({ car }) => {
   const { id, name, type, price, year, seats } = car;
 
   return (
-    <div className="group border border-border rounded-lg overflow-hidden transition-all duration-300 hover:shadow-md dark:hover:shadow-primary/10 bg-background">
+    <div className="group border border-border rounded-lg overflow-hidden transition-all duration-300 hover:shadow-md dark:hover:shadow-primary/10 bg-background card-shadow">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="md:col-span-1 relative">
           <AspectRatio ratio={4/3} className="bg-muted">
-            <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-              <div className="text-center">
-                <p className="text-sm">{name}</p>
-                <p className="text-xs mt-1 text-muted-foreground">Placeholder Image</p>
+            <div className="w-full h-full flex items-center justify-center text-muted-foreground bg-accent/20">
+              <div className="text-center p-4">
+                <p className="text-lg font-medium mb-1">{name}</p>
+                <p className="text-xs text-muted-foreground">
+                  Image placeholder
+                  <br />
+                  <span className="text-xs opacity-70">(Will be populated from API)</span>
+                </p>
               </div>
             </div>
           </AspectRatio>
@@ -27,7 +31,7 @@ const CarListItem = ({ car }) => {
         
         <div className="p-4 md:col-span-2 flex flex-col justify-between">
           <div>
-            <div className="flex justify-between items-start mb-2">
+            <div className="flex justify-between items-start mb-3">
               <h3 className="text-xl font-bold text-foreground">{name}</h3>
               <p className="flex items-center text-lg font-bold text-primary">
                 <DollarSign className="h-4 w-4" />

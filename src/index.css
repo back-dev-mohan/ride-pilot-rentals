@@ -46,7 +46,7 @@
   }
 
   .dark {
-    /* Modified dark theme colors - removed purple tint */
+    /* Modified dark theme colors - removed blue/purple tint */
     --background: 220 20% 10%;
     --foreground: 210 40% 98%;
 
@@ -78,12 +78,12 @@
     /* Modified sidebar colors for dark theme */
     --sidebar-background: 220 20% 12%;
     --sidebar-foreground: 210 40% 90%;
-    --sidebar-primary: 210 80% 60%;
+    --sidebar-primary: 210 40% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 215 25% 18%;
     --sidebar-accent-foreground: 210 40% 90%;
     --sidebar-border: 215 25% 20%;
-    --sidebar-ring: 210 80% 60%;
+    --sidebar-ring: 210 40% 60%;
   }
 }
 
@@ -110,4 +110,34 @@ body {
 
 .animate-fade-in {
   animation: fadeIn 0.2s ease-out forwards;
+}
+
+/* Adding smooth transitions for sidebar and buttons */
+.sidebar-transition {
+  transition: width 0.3s ease, transform 0.3s ease;
+}
+
+.hover-transition {
+  transition: all 0.2s ease;
+}
+
+/* Card and container styling enhancements */
+.card-shadow {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.container-padding {
+  padding: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .container-padding {
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-padding {
+    padding: 2.5rem;
+  }
 }

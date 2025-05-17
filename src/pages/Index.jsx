@@ -22,17 +22,20 @@ const Index = () => {
       <main className="flex-1">
         <HeroSection />
         
-        {/* Search Section */}
-        <div className="py-6 bg-white shadow-md">
+        {/* Search Section with improved styling */}
+        <div className="py-6 bg-background border-b border-border shadow-sm">
           <div className="container mx-auto px-4">
             <SearchBar onSearch={handleSearch} />
           </div>
         </div>
         
-        <CarCategoriesSection />
-        <FeaturedCarsSection />
-        <AboutUsSection />
-        <WhyChooseUsSection />
+        {/* Main content sections with consistent spacing */}
+        <div className="container mx-auto px-4">
+          <CarCategoriesSection />
+          <FeaturedCarsSection />
+          <AboutUsSection />
+          <WhyChooseUsSection />
+        </div>
       </main>
       <Footer />
     </div>
